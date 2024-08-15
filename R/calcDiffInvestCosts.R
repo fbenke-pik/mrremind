@@ -14,7 +14,6 @@ calcDiffInvestCosts <- function(subtype) {
     x_REN21 <- readSource("REN21", subtype = "investmentCosts")
     x_IEA_PVPS <- readSource("IEA_PVPS", subtype = "CAPEX")
 
-    # x <- readSource("IEA_WEO")# reading data end of convert function
     x[, , ] <- as.numeric(x[, , ]) # convertng data values into numeric
 
     # Various mapping files used to get needed mappings, for e.g., South Asia
