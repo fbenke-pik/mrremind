@@ -114,7 +114,6 @@ convertIEA_WorldEnergyOutlook <- function(x, subtype) { # nolint
 
     return(xRegional)
   } else if (subtype == "assumptions") {
-
     # fill NAs with averages of other regions ----
 
     # calculate averages matrix
@@ -127,9 +126,10 @@ convertIEA_WorldEnergyOutlook <- function(x, subtype) { # nolint
     avg <- sm / count
     avg[is.nan(avg)] <- NA
     # replicate averages for all regions to get same dimensionality as x
-    avg <- do.call("mbind", lapply(magclass::getItems(x, dim = 1),
-                            function(r) magclass::setItems(avg, dim = 1, r))
-    )
+    avg <- do.call("mbind", lapply(
+      magclass::getItems(x, dim = 1),
+      function(r) magclass::setItems(avg, dim = 1, r)
+    ))
 
     # replaces NAs in x with values from averages matrix
     x[is.na(x)] <- avg[is.na(x)]
@@ -146,30 +146,29 @@ convertIEA_WorldEnergyOutlook <- function(x, subtype) { # nolint
       sets = getSets(x)
     )
 
-    out["EUR",,] <- as.numeric(x["European Union",,])
-    out["SSA",,] <- as.numeric(x["Africa", , ])
-    out["MEA",,] <- as.numeric(x["Middle East",,])
-    out["LAM",,] <- as.numeric(x["Brazil",,])
-    out["CHA",,] <- as.numeric(x["China",,])
-    out["IND",,] <- as.numeric(x["India",,])
-    out["JPN",,] <- as.numeric(x["Japan",,])
-    out["REF",,] <- as.numeric(x["Russia",,])
-    out["USA",,] <- as.numeric(x["United States",,])
+    out["EUR", , ] <- as.numeric(x["European Union", , ])
+    out["SSA", , ] <- as.numeric(x["Africa", , ])
+    out["MEA", , ] <- as.numeric(x["Middle East", , ])
+    out["LAM", , ] <- as.numeric(x["Brazil", , ])
+    out["CHA", , ] <- as.numeric(x["China", , ])
+    out["IND", , ] <- as.numeric(x["India", , ])
+    out["JPN", , ] <- as.numeric(x["Japan", , ])
+    out["REF", , ] <- as.numeric(x["Russia", , ])
+    out["USA", , ] <- as.numeric(x["United States", , ])
 
     # all non-EU European countries get average of "Europe" and "RUS" values
-    out["NEU",,] <- (as.numeric(x["European Union", , ]) + as.numeric(x["Russia", , ])) / 2
+    out["NEU", , ] <- (as.numeric(x["European Union", , ]) + as.numeric(x["Russia", , ])) / 2
 
     # all CAZ countries get "OECD" average values
-    out["CAZ",,] <- (as.numeric(x["European Union", , ]) + as.numeric(x["United States", , ]) + as.numeric(x["Japan", , ])) / 3
+    out["CAZ", , ] <- (as.numeric(x["European Union", , ]) + as.numeric(x["United States", , ]) + as.numeric(x["Japan", , ])) / 3
 
     # all OAS countries get average of Indian and Japanese values
-    out["OAS",,] <- (as.numeric(x["India", , ]) + as.numeric(x["Japan", , ])) / 2
+    out["OAS", , ] <- (as.numeric(x["India", , ]) + as.numeric(x["Japan", , ])) / 2
 
     # disaggregate and return ----
 
     out <- toolAggregate(out, rel = m)
     return(out)
-
   } else {
     stop("Unsupported subtype. Must be either 'outlook' or 'assumptions'")
   }

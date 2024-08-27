@@ -5,9 +5,9 @@
 
 calcIEA_WorldEnergyOutlook <- function() { # nolint
 
-  dataGlo <- readSource("IEA_WorldEnergyOutlook", convert = FALSE)["World", , ]
+  dataGlo <- readSource("IEA_WorldEnergyOutlook", subtype = "outlook", convert = FALSE)["World", , ]
   magclass::getItems(dataGlo, dim = 1) <- "GLO"
-  dataReg <- readSource("IEA_WorldEnergyOutlook", convert = TRUE)
+  dataReg <- readSource("IEA_WorldEnergyOutlook", subtype = "outlook", convert = TRUE)
 
   .mapToRemind <- function(data) {
 
