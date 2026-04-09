@@ -128,6 +128,9 @@ fullREMIND <- function() {
   calcOutput("WaterConsCoef",                            round = 3,  file = "WaterConsCoef.cs4r", aggregate = FALSE)
   calcOutput("WaterWithCoef",                            round = 3,  file = "WaterWithCoef.cs4r", aggregate = FALSE)
   calcOutput("ClinkerToCementRatio",                     round = 2,  file = "p37_clinker-to-cement-ratio.cs4r")
+
+  # TODO: fx
+  calcOutput("1stBioDem", subtype = "ethanol_oils")
   calcOutput("IoRemind", subtype = "output",             round = 8,  file = "f04_IO_output.cs4r")
   calcOutput("IoRemind", subtype = "input",              round = 8,  file = "f04_IO_input.cs4r")
   calcOutput("IoRemind", subtype = "trade",              round = 8,  file = "f_IO_trade.cs4r")
