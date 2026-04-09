@@ -24,6 +24,11 @@
 calcIO <- function(subtype = c("input", "output", "trade"),
                    ieaVersion = "default", corrected = FALSE) {
 
+  if (corrected) {
+    bio1st <- calcOutput("1stBioDem", subtype = "ethanol_oils", aggregate = FALSE)
+    bio1st <- bio1st[, , c("pebios", "pebioil")] / 1000 # PJ to EJ
+  }
+
   subtype <- match.arg(subtype)
 
   switch(
@@ -122,7 +127,6 @@ calcIO <- function(subtype = c("input", "output", "trade"),
       reminditems[, , "pebiolc.sesobio.biotr"] <- reminditems[, , "pebiolc.sesobio.biotr"] * (shareBiotrad)
 
       # replace IEA data for 1st generation biomass with data that also MAgPIE uses ----
-      bio1st <- calcOutput("1stBioDem", subtype = "ethanol_oils", aggregate = FALSE) / 1000 # PJ to EJ
 
       reminditems[, , "pebios.seliqbio.bioeths"] <-
         time_interpolate(bio1st[, , "pebios"], interpolated_year = getYears(reminditems),

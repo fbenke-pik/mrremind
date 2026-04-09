@@ -18,8 +18,6 @@ fullREMIND <- function() {
   gdpPopScen <- c("SSPs", "SSP2IndiaDEAs")
   feDemScen <- c(gdpPopScen, "SSP2_lowEn", "SSP2_highDemDEU", "SSP2_NAV_all")
 
-  calcOutput("1stBioDem", subtype = "ethanol_oils", aggregate = FALSE, file = "test.cs3r")
-
   #-------------- macro-economic parameters -----------------------------------------------------------
   calcOutput("Population", scenario = gdpPopScen, years = rem_years_hist, round = 8, file = "f_pop.cs3r")
   calcOutput("Population",
