@@ -123,9 +123,11 @@ calcIO <- function(subtype = c("input", "output", "trade"),
 
       # replace IEA data for 1st generation biomass with data that also MAgPIE uses ----
       bio1st <- calcOutput("1stBioDem", subtype = "ethanol_oils", aggregate = FALSE) / 1000 # PJ to EJ
+
       reminditems[, , "pebios.seliqbio.bioeths"] <-
         time_interpolate(bio1st[, , "pebios"], interpolated_year = getYears(reminditems),
                          integrate_interpolated_years = FALSE, extrapolation_type = "constant")
+
       reminditems[, , "pebioil.seliqbio.biodiesel"] <-
         time_interpolate(bio1st[, , "pebioil"], interpolated_year = getYears(reminditems),
                          integrate_interpolated_years = FALSE, extrapolation_type = "constant")
