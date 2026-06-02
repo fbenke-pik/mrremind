@@ -123,6 +123,9 @@ fullREMIND <- function() {
   calcOutput("ClinkerToCementRatio",                     round = 2,  file = "p37_clinker-to-cement-ratio.cs4r")
   calcOutput("IoRemind", subtype = "output",             round = 8,  file = "f04_IO_output.cs4r")
   calcOutput("IoRemind", subtype = "input",              round = 8,  file = "f04_IO_input.cs4r")
+  calcOutput("IoRemind", subtype = "output", useTool = FALSE,             round = 8,  file = "f04_IO_output_raw.cs4r")
+  calcOutput("IoRemind", subtype = "input", useTool = FALSE,             round = 8,  file = "f04_IO_input_raw.cs4r")
+
   calcOutput("IoRemind", subtype = "trade",              round = 8,  file = "f_IO_trade.cs4r")
 
   calcOutput("Capacity", subtype = "capacityByTech",                   round = 6,  file = "pm_histCap.cs3r",
