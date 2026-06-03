@@ -9,7 +9,7 @@
 #' @author Falk Benke
 calcIoRemind <- function(subtype, additionalCorrections = TRUE) {
   x <- calcOutput("IO", subtype = subtype, corrected = TRUE,
-                  supplementary = TRUE, aggregate = FALSE, additionalCorrections = TRUE)
+                  supplementary = TRUE, aggregate = FALSE, additionalCorrections = additionalCorrections)
   desc <- x$description
   x <- x$x
 
