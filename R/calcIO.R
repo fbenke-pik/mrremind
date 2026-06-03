@@ -22,7 +22,7 @@
 #'
 #' @importFrom dplyr filter mutate
 calcIO <- function(subtype = c("input", "output", "trade"),
-                   ieaVersion = "default", corrected = FALSE, useTool = TRUE) {
+                   ieaVersion = "default", corrected = FALSE, additionalCorrections = FALSE) {
   subtype <- match.arg(subtype)
 
   switch(subtype,
@@ -65,9 +65,8 @@ calcIO <- function(subtype = c("input", "output", "trade"),
   data <- readSource("IEA", subtype = ieaSubtype) * 4.1868e-5
 
   # apply IEA data postprocessing
-  if(useTool) {
-    data <- toolFixIEAdataForIndustrySubsectors(data)
-  }
+  data <- toolFixIEAdataForIndustrySubsectors(data, additionalCorrections = additionalCorrections)
+
 
   ieamatch <- utils::read.csv2(mapping, stringsAsFactors = FALSE, na.strings = "")
 

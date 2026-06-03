@@ -7,9 +7,9 @@
 #' @param subtype either "input", "output" or "trade"
 #'
 #' @author Falk Benke
-calcIoRemind <- function(subtype, useTool = TRUE) {
+calcIoRemind <- function(subtype, additionalCorrections = TRUE) {
   x <- calcOutput("IO", subtype = subtype, corrected = TRUE,
-                  supplementary = TRUE, aggregate = FALSE, useTool = useTool)
+                  supplementary = TRUE, aggregate = FALSE, additionalCorrections = TRUE)
   desc <- x$description
   x <- x$x
 
