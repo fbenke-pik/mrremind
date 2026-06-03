@@ -22,7 +22,7 @@
 #'
 #' @importFrom dplyr filter mutate
 calcIO <- function(subtype = c("input", "output", "trade"),
-                   ieaVersion = "default", corrected = FALSE, additionalCorrections = FALSE) {
+                   ieaVersion = "default", corrected = FALSE, additionalCorrections = TRUE) {
   subtype <- match.arg(subtype)
 
   switch(subtype,
