@@ -131,6 +131,7 @@ fullREMIND <- function() {
   calcOutput("Capacity", subtype = "capacityByTech",                   round = 6,  file = "pm_histCap.cs3r",
              # for period 2025, only use the year 2024 value (drop 2023, 2025-2027 are not in data anyways)
              temporalmapping = filter(quitte::remind_timesteps, .data$year != 2023))
+  calcOutput("Capacity", subtype = "capacityByTech",                   round = 6,  file = "pm_histCapYearly.cs3r")
   calcOutput("Capacity", subtype = "capacityByPE",                     round = 6,  file = "p_PE_histCap.cs3r")
   calcOutput("CapacityFactor",                                         round = 6,  file = "f_cf.cs3r")
   calcOutput("SeProduction",                                           round = 8,  file = "p_histProdSe.cs3r")
