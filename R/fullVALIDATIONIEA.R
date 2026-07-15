@@ -36,7 +36,8 @@ fullVALIDATIONIEA <- function() {
     type = "industry_subsectors_specific", subtype = "FE",
     scenarios = "SSP2",
     regions = unique(region_mapping_21$region),
-    file = "industry_subsectors_specific.cs4r"
+    file = "industry_subsectors_specific.cs4r",
+    aggregate = FALSE
   )
 
   calcOutput(
