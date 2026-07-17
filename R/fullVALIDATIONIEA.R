@@ -1,5 +1,8 @@
 fullVALIDATIONIEA <- function() {
-  calcOutput("EnergyBalancesOutputToIndustry", file = "EnergyBalancesOutputToIndustry.cs4r")
+
+
+  calcOutput("EnergyBalancesOutputToIndustry",
+             file = "EnergyBalancesOutputToIndustry.cs4r")
 
   calcOutput(
     type = "Industry_Value_Added",
@@ -20,13 +23,6 @@ fullVALIDATIONIEA <- function() {
     file = "Steel_Projections.cs4r"
   )
 
-  calcOutput(
-    type = "ODYM_RECC",
-    subtype = "REMIND_industry_trends",
-    file = "ODYM_RECC.cs4r",
-    smooth = TRUE
-  )
-
   region_mapping_21 <- toolGetMapping('regionmapping_21_EU11.csv', 'regional',
                                       where = 'mappingfolder') %>%
     as_tibble() %>%
@@ -43,5 +39,11 @@ fullVALIDATIONIEA <- function() {
   calcOutput(
     type = "FE", ieaVersion = "latest", file = "FE.cs4r",
   )
+
+  calcOutput("FeDemandIndustry",
+             scenarios = "SSP2",
+             signif = 4,
+             aggregate = FALSE,
+             file = "f_fedemandInd_unaggregated.cs4r")
 
 }
