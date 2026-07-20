@@ -1,44 +1,18 @@
 fullVALIDATIONIEA <- function() {
 
+  # general ----
 
-  calcOutput("EnergyBalancesOutputToIndustry",
-             file = "EnergyBalancesOutputToIndustry.cs4r")
+  calcOutput("IeaEnergyBalances", ieaVesion = "default", file = "IeaEnergyBalances.cs4r")
 
-  calcOutput(
-    type = "Industry_Value_Added",
-    scenarios = "SSP2",
-    match.steel.historic.values = TRUE,
-    match.steel.estimates = "IEA_ETP",
-    warnNA = FALSE,
-    file = "Industry_Value_Added.cs4r"
-  )
+  # Industry ----
 
-  calcOutput(
-    type = "Steel_Projections",
-    subtype = "production",
-    scenarios = "SSP2",
-    match.steel.historic.values = TRUE,
-    match.steel.estimates = "IEA_ETP",
-    supplementary = FALSE,
-    file = "Steel_Projections.cs4r"
-  )
+  gdpPopScen <- c("SSPs", "SSP2IndiaDEAs")
+  feDemScen <- c(gdpPopScen, "SSP2_lowEn", "SSP2_highDemDEU", "SSP2_NAV_all")
 
-  region_mapping_21 <- toolGetMapping('regionmapping_21_EU11.csv', 'regional',
-                                      where = 'mappingfolder') %>%
-    as_tibble() %>%
-    select(iso3c = 'CountryCode', region = 'RegionCode')
+  calcOutput("EnergyBalancesOutputToIndustry", file = "EnergyBalancesOutputToIndustry.cs4r")
 
-  calcOutput(
-    type = "industry_subsectors_specific", subtype = "FE",
-    scenarios = "SSP2",
-    regions = unique(region_mapping_21$region),
-    file = "industry_subsectors_specific.cs4r",
-    aggregate = FALSE
-  )
-
-  calcOutput(
-    type = "FE", ieaVersion = "latest", file = "FE.cs4r",
-  )
+  calcOutput("FeDemandIndustry", scenarios = feDemScen, signif = 4, last_empirical_year = 2022,
+             file = "f_fedemandInd_2022.cs4r")
 
   calcOutput("FeDemandIndustry",
              scenarios = "SSP2",
@@ -46,4 +20,20 @@ fullVALIDATIONIEA <- function() {
              aggregate = FALSE,
              file = "f_fedemandInd_unaggregated.cs4r")
 
-}
+
+  # Historical ----
+
+  calcOutput(type = "PE", ieaVersion = "latest", file = "PE.cs4r")
+  calcOutput(type = "FE", ieaVersion = "latest", file = "FE.cs4r")
+
+  # Buildings ----
+
+  calcOutput(type = "IOEdgeBuildings", ieaVersion = "default",
+             subtype = "output_EDGE", file = "IOEdgeBuildings_output_EDGE.cs4r")
+  calcOutput(type = "IOEdgeBuildings", ieaVersion = "default",
+             subtype = "output_EDGE_buildings", file = "IOEdgeBuildings_output_EDGE_buildings.cs4r")
+
+  # Transport ----
+  calcOutput(type = "IEAOutputTransport", file = "IEAOutputTransport.cs4r")
+
+  }
