@@ -2,7 +2,7 @@ fullVALIDATIONIEA <- function() {
 
   # general ----
 
-  calcOutput("IeaEnergyBalances", ieaVesion = "default", file = "IeaEnergyBalances.cs4r")
+  #calcOutput("IeaEnergyBalances", ieaVesion = "default", file = "IeaEnergyBalances.cs4r")
 
   # Industry ----
 
