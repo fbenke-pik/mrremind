@@ -20,6 +20,7 @@ calcPE <- function(ieaVersion = "default") {
   # select data that have names
   map <- map[map$io %in% getNames(data), ]
   x <- data[, , map$io]
+
   # aggregate from the IO names to the reporting names.
   x <- madrat::toolAggregate(x, map, dim = 3, from = "io", to = "input")
   # rename entries of data to match the reporting names
