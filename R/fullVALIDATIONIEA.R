@@ -15,7 +15,7 @@ fullVALIDATIONIEA <- function() {
 
   # Buildings ----
   calcOutput(type = "IOEdgeBuildings", ieaVersion = "default",
-             subtype = "output_EDGE", file = "IOEdgeBuildings_output_EDGE.cs4r")
+             subtype = "output_EDGE_ononspec", file = "IOEdgeBuildings_output_EDGE.cs4r")
   calcOutput(type = "IOEdgeBuildings", ieaVersion = "default",
              subtype = "output_EDGE_buildings", file = "IOEdgeBuildings_output_EDGE_buildings.cs4r")
 
