@@ -127,9 +127,12 @@ fullREMIND <- function() {
   calcOutput("IoRemind", subtype = "trade",              round = 8,  file = "f_IO_trade.cs4r")
 
   calcOutput("Capacity", subtype = "capacityByTech",                   round = 6,  file = "pm_histCap.cs3r",
-             # for period 2025, only use the year 2024 value (drop 2023, 2025-2027 are not in data anyways)
-             temporalmapping = filter(quitte::remind_timesteps, .data$year != 2023))
-  calcOutput("Capacity", subtype = "capacityByTech",                   round = 6,  file = "pm_histCapYearly.cs3r")
+             # for period 2025, only use the year 2025, as 2026, 2027 are not in the data yet
+             temporalmapping = filter(quitte::remind_timesteps, !(.data$year %in% c(2023, 2024, 2026, 2027))))
+  tmp <- calcOutput("Capacity", subtype = "capacityByTech", round = 6, file = "pm_histCapYearly.cs3r")
+  if ("y2026" %in% getYears(tmp)) {
+    warning("Consider updating the temporal mapping of pm_histCap.cs3r")
+  }
   calcOutput("Capacity", subtype = "capacityByPE",                     round = 6,  file = "p_PE_histCap.cs3r")
   calcOutput("CapacityFactor",                                         round = 6,  file = "f_cf.cs3r")
   calcOutput("SeProduction",                                           round = 8,  file = "p_histProdSe.cs3r")
