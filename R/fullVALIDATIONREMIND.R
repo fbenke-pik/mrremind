@@ -71,16 +71,30 @@ fullVALIDATIONREMIND <- function(rev = 0) {
   calcOutput(
     type = "PE", ieaVersion = "latest", file = valfile,
     aggregate = columnsForAggregation, append = TRUE, warnNA = FALSE,
-    try = FALSE, writeArgs = list(scenario = "historical", model = "IEA")
+    try = FALSE, writeArgs = list(scenario = "historical", model = "IEA-latest")
   )
+
+  calcOutput(
+    type = "PE", ieaVersion = "default", file = valfile,
+    aggregate = columnsForAggregation, append = TRUE, warnNA = FALSE,
+    try = FALSE, writeArgs = list(scenario = "historical", model = "IEA-default")
+  )
+
 
   # IEA Final Energy ----
 
   calcOutput(
     type = "FE", ieaVersion = "latest", file = valfile,
     aggregate = columnsForAggregation, append = TRUE, warnNA = FALSE,
-    try = FALSE, writeArgs = list(scenario = "historical", model = "IEA")
+    try = FALSE, writeArgs = list(scenario = "historical", model = "IEA-latest")
   )
+
+  calcOutput(
+    type = "FE", ieaVersion = "default", file = valfile,
+    aggregate = columnsForAggregation, append = TRUE, warnNA = FALSE,
+    try = FALSE, writeArgs = list(scenario = "historical", model = "IEA-default")
+  )
+
 
   # IEA Fossil Trade ----
 
