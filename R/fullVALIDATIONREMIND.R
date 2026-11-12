@@ -69,13 +69,13 @@ fullVALIDATIONREMIND <- function(rev = 0) {
   # IEA Primary Energy ----
 
   calcOutput(
-    type = "PE", ieaVersion = "EnergyBalances-2026", file = valfile,
+    type = "PE", ieaVersion = "latest", file = valfile,
     aggregate = columnsForAggregation, append = TRUE, warnNA = FALSE,
     try = FALSE, writeArgs = list(scenario = "historical", model = "IEA-2026")
   )
 
   calcOutput(
-    type = "PE", ieaVersion = "latest", file = valfile,
+    type = "PE", ieaVersion = "EnergyBalances-2025", file = valfile,
     aggregate = columnsForAggregation, append = TRUE, warnNA = FALSE,
     try = FALSE, writeArgs = list(scenario = "historical", model = "IEA-2025")
   )
@@ -90,13 +90,13 @@ fullVALIDATIONREMIND <- function(rev = 0) {
   # IEA Final Energy ----
 
   calcOutput(
-    type = "FE", ieaVersion = "EnergyBalances-2026", file = valfile,
+    type = "FE", ieaVersion = "latest", file = valfile,
     aggregate = columnsForAggregation, append = TRUE, warnNA = FALSE,
     try = FALSE, writeArgs = list(scenario = "historical", model = "IEA-2026")
   )
 
   calcOutput(
-    type = "FE", ieaVersion = "latest", file = valfile,
+    type = "FE", ieaVersion = "EnergyBalances-2025", file = valfile,
     aggregate = columnsForAggregation, append = TRUE, warnNA = FALSE,
     try = FALSE, writeArgs = list(scenario = "historical", model = "IEA-2025")
   )
