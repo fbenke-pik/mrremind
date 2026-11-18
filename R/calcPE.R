@@ -26,7 +26,7 @@ calcPE <- function(ieaVersion = "default") {
 
   map <- map %>%
     filter(.data$io %in% getNames(x)) %>%
-    mutate(map, "input" = paste0(.data$output, " (EJ/yr)"))
+    mutate("input" = paste0(.data$input, " (EJ/yr)"))
 
   x <- toolAggregate(x[, , unique(map$io)], rel = map, dim = 3, from = "io", to = "input")
 
